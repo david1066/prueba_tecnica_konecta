@@ -47,7 +47,7 @@ class VentaController extends Controller
         }else {
            //trae todos los productos
             $productos=getProducts();
-            $message='No hay disponible todas esas unidades del producto';
+            $message='No hay disponibilidad todas esas unidades del producto';
             $status='danger';
             return view('venta.create',compact('status','message','productos'));
         }
