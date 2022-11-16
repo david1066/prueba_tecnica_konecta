@@ -1,9 +1,8 @@
 
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <div class="container">
-<h1>Vender producto</h1>
-<a  class="btn btn-secondary"  href="{{ url('/') }}">
-  Ir al menú principal</a>
+<h1 class="text-center">Vender producto</h1>
+
 <hr>
 <form  method="post" action="{{ url('/venta/store') }}">
 
@@ -27,13 +26,15 @@
     </div>
     <div class="form-group">
         <label>Cantidad</label>
-        <input type="number" min="1"  step="1" class="form-control" name="stock" id="stock" required>
+        <input type="number" min="1"  step="1" class="form-control" name="cantidad" id="cantidad" required>
     </div>
     
 
 
 
        <input type="submit" name="send" value="Guardar" class="btn btn-dark btn-block">
+       <a  class="btn btn-secondary btn-block"  href="{{ url('/') }}">
+        Menú principal</a>
 </form>
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

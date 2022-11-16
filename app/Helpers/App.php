@@ -2,8 +2,10 @@
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Categoria;
+use App\Models\Producto;
 
     function getCategories(){
+        
         //si no esta en la cache
         if (!Cache::has('categoria'))
         {
@@ -16,6 +18,11 @@ use App\Models\Categoria;
             $categoria = Cache::get('categoria');
         }
         return $categoria;
+    }
+    function getProducts(){
+        // listado de productos que tienen stocks
+        //como es una tarea frecuente es mejor no agregarla en cache
+        return Producto::all()->where('stock','>','0');
     }
 
 

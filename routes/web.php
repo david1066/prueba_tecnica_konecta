@@ -21,11 +21,11 @@ use App\Http\Controllers\VentaController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/sql/code', function () {
+Route::get('/sql', function () {
     return view('sql.index');
 });
 Route::get('/categoria/create', function () {
-    return view('categoria.index');
+    return view('categoria.create');
 });
 
 Route::post('/categoria/store',  [CategoriaController::class, 'store'])->name('categoria.store');

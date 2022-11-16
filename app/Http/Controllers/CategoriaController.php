@@ -20,11 +20,11 @@ class CategoriaController extends Controller
             $message='Agregado correctamente';
             //borro de la memoria cache
             $categoria = Cache::forget('categoria');
-            return view('categoria.index',compact('nombre','message'));
+            return view('categoria.create',compact('nombre','message'));
     
         }else{
             $message='No ha sido creado';
-            return view('categoria.index',compact('nombre','message'));
+            return view('categoria.create',compact('nombre','message'));
         }
 
     }

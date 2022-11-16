@@ -9,23 +9,31 @@ use App\Models\Producto;
 class VentaController extends Controller
 {
     public function create(){
-        $productos= Producto::all()->where('stock','>','0');
+        //lista todos los productos que tenga stock mayor a 0
+        //ruta app/Helpers/App.php
+        $productos= getProducts();
         return  view('venta.create',compact('productos'));
     }
 
     public function store(Request $request){
-        $countproductos= Producto::where('id','=',$request->producto_id)->where('stock','>=',$request->stock)->count();
-   
+        //valida si el stock es mayor a la cantidad solicitada
+        $countproductos= Producto::where('id','=',$request->producto_id)->where('stock','>=',$request->cantidad)->count();
+        //trae todos los productos
+        $productos=getProducts();
+        //si hay productos
         if( $countproductos!=0){
-            $producto =  Producto::where('id',$request->producto_id)->first();
-            $producto->stock=($producto->stock-$request->stock);
+            //actualiza el stock del producto seleccionado
+            $producto =  Producto::whereraw('id = ?',$request->producto_id)->first();
+            $producto->stock=($producto->stock-$request->cantidad);
             $producto->save();
+
+            //guarda la venta realizada
             $venta = new Venta();
             $venta->producto_id=$request->producto_id;
-            $venta->cantidad = $request->stock;
+            $venta->cantidad = $request->cantidad;
             $venta->save();
-            $productos= Producto::all()->where('stock','>','0');
-            if($venta->id!=null){
+            
+            if(isset($venta->id)){
                 $message='Venta realizada correctamente';
                 $status='success';
                 return view('venta.create',compact('status','message','productos'));
@@ -36,7 +44,7 @@ class VentaController extends Controller
             }
 
         }else {
-            $productos= Producto::all()->where('stock','>','0');
+           
             $message='No hay disponible todas esas unidades del producto';
             $status='danger';
             return view('venta.create',compact('status','message','productos'));
