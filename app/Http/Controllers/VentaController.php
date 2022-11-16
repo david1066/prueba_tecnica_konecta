@@ -18,8 +18,7 @@ class VentaController extends Controller
     public function store(Request $request){
         //valida si el stock es mayor a la cantidad solicitada
         $countproductos= Producto::where('id','=',$request->producto_id)->where('stock','>=',$request->cantidad)->count();
-        //trae todos los productos
-        $productos=getProducts();
+        
         //si hay productos
         if( $countproductos!=0){
             //actualiza el stock del producto seleccionado
@@ -33,6 +32,8 @@ class VentaController extends Controller
             $venta->cantidad = $request->cantidad;
             $venta->save();
             
+            //trae todos los productos
+            $productos=getProducts();
             if(isset($venta->id)){
                 $message='Venta realizada correctamente';
                 $status='success';
@@ -44,7 +45,8 @@ class VentaController extends Controller
             }
 
         }else {
-           
+           //trae todos los productos
+            $productos=getProducts();
             $message='No hay disponible todas esas unidades del producto';
             $status='danger';
             return view('venta.create',compact('status','message','productos'));
