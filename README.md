@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-# prueba_konecta
+# prueba_tecnica_konecta
 
 1. Instalar composer
 
