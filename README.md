@@ -30,9 +30,11 @@ DB_DATABASE=prueba_tecnica_konecta
 DB_USERNAME=root
 DB_PASSWORD=
 
-5. ejecutamos la migraciones que nos creara las tablas pero dentro del proyecto en la carpeta prueba
+5. ejecutamos las migraciones y los seeders
 
 php artisan migrate
+
+php artisan db:seed
 
 6. corremos el proyecto con servidor que viene en composer 
 
